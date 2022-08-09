@@ -1,0 +1,19 @@
+table {
+    margin: 40px auto 0;
+    border: 2px solid #000;
+    width: 60%;
+}
+
+th,
+td {
+    border: 1px solid #000;
+    padding: 8px;
+    font-size: 25px;
+}
+
+.error, .loading {
+    font-size: 50px;
+    font-weight: 800;
+    text-align: center;
+    margin-top: 115px;
+}
