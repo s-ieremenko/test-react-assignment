@@ -3,7 +3,13 @@ import React from 'react'
 import styles from './Table.module.css'
 
 const Table = (props) => {
-    const { users, isLoading, isError } = props
+    const {
+        users,
+        isLoading,
+        isError,
+        showMoreInfoColumn,
+        handleShowMoreInfo,
+    } = props
 
     if (isLoading) {
         return (
@@ -27,6 +33,7 @@ const Table = (props) => {
                 <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
+                    {showMoreInfoColumn && <th></th>}
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +43,17 @@ const Table = (props) => {
                         <tr key={id}>
                             <td>{firstName}</td>
                             <td>{lastName}</td>
+                            {showMoreInfoColumn && (
+                                <td>
+                                    <button
+                                        onClick={() =>
+                                            handleShowMoreInfo(user)
+                                        }
+                                    >
+                                        More information
+                                    </button>
+                                </td>
+                            )}
                         </tr>
                     )
                 })}

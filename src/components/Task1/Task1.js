@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import Table from '../Table/Table'
+import styles from '../Task2/Task2.module.css'
 
 const url = 'https://hiring-api.simbuka.workers.dev'
 
@@ -26,11 +27,13 @@ const Task1 = () => {
     }, [])
 
     return (
-        <Table
-            users={users}
-            isLoading={isLoading}
-            isError={isError}
-        />
+        <div className={styles.container}>
+            <Table
+                users={users}
+                isLoading={isLoading}
+                isError={isError}
+            />
+        </div>
     )
 }
 

@@ -16,3 +16,7 @@ td {
     text-align: center;
     margin-top: 115px;
 }
+
+th:last-child {
+    width: 19%
+}
