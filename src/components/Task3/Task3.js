@@ -10,6 +10,7 @@ const Task3 = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
     const [usersPerPage, setUsersPerPage] = useState(10)
+    const [openModal, setOpenModal] = useState(false)
 
     const getUsers = async () => {
         try {
@@ -25,7 +26,13 @@ const Task3 = () => {
     }
 
     const handleShowMoreInfo = (currentUser) => {
+        setOpenModal(true)
         setCurrentUser(currentUser)
+    }
+
+    const handleCloseModal = () => {
+        setOpenModal(false)
+        setCurrentUser(null)
     }
 
     useEffect(() => {
@@ -67,7 +74,12 @@ const Task3 = () => {
                     </select>
                 </form>
             </div>
-            <Modal {...currentUser} />
+            {openModal && (
+                <Modal
+                    {...currentUser}
+                    handleCloseModal={handleCloseModal}
+                />
+            )}
         </div>
     )
 }

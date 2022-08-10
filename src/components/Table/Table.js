@@ -44,7 +44,7 @@ const Table = (props) => {
                             <td>{firstName}</td>
                             <td>{lastName}</td>
                             {showMoreInfoColumn && (
-                                <td>
+                                <td className={styles.moreInfo}>
                                     <button
                                         onClick={() =>
                                             handleShowMoreInfo(user)

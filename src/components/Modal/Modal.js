@@ -8,17 +8,23 @@ const Modal = (props) => {
         birthDate,
         gender,
         customerIdentificationCode,
+        handleCloseModal,
     } = props
     return (
-        <div className={styles.modal}>
-            <button>CLOSE</button>
-            <ul>
-                <li>{firstName}</li>
-                <li>{lastName}</li>
-                <li>{birthDate}</li>
-                <li>{gender}</li>
-                <li>{customerIdentificationCode}</li>
-            </ul>
+        <div className={styles.modalBackground}>
+            <div className={styles.modalContainer}>
+                <button onClick={handleCloseModal}>Close</button>
+                <ul>
+                    <li>
+                        Identification number:{' '}
+                        {customerIdentificationCode}
+                    </li>
+                    <li>First name: {firstName}</li>
+                    <li>Last name: {lastName}</li>
+                    <li>Birth date: {birthDate}</li>
+                    <li>Gender: {gender}</li>
+                </ul>
+            </div>
         </div>
     )
 }
