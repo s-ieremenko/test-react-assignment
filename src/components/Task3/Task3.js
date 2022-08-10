@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from 'react'
+
 import Table from '../Table/Table'
 import styles from './Task3.module.css'
 import Modal from '../Modal/Modal'
+import { url } from '../../constants'
+import { useFetching } from '../../hooks/useFetching'
+import UserService from '../../API/UserService'
 
 const Task3 = () => {
     const [users, setUsers] = useState([])
     const [currentUser, setCurrentUser] = useState({})
-    const [isError, setIsError] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
     const [usersPerPage, setUsersPerPage] = useState(10)
     const [openModal, setOpenModal] = useState(false)
 
-    const getUsers = async () => {
-        try {
-            const url = `https://hiring-api.simbuka.workers.dev/?page=${currentPage}&size=${usersPerPage}`
-            const response = await fetch(url)
-            const users = await response.json()
-            setUsers(users)
-            setIsLoading(false)
-        } catch (e) {
-            setIsLoading(false)
-            setIsError(true)
-        }
-    }
+    const urlWithPagination = `${url}?page=${currentPage}&size=${usersPerPage}`
+
+    const [fetchUsers, isLoading, error] = useFetching(async () => {
+        const users = await UserService.getAllUsers(urlWithPagination)
+        setUsers(users)
+    })
 
     const handleShowMoreInfo = (currentUser) => {
         setOpenModal(true)
@@ -36,7 +32,7 @@ const Task3 = () => {
     }
 
     useEffect(() => {
-        getUsers()
+        fetchUsers()
     }, [usersPerPage, currentPage])
 
     const handleChange = (e) => {
@@ -54,7 +50,7 @@ const Task3 = () => {
             <Table
                 users={users}
                 isLoading={isLoading}
-                isError={isError}
+                error={error}
                 showMoreInfoColumn={true}
                 handleShowMoreInfo={handleShowMoreInfo}
             />

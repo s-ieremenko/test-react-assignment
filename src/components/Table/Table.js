@@ -6,7 +6,7 @@ const Table = (props) => {
     const {
         users,
         isLoading,
-        isError,
+        error,
         showMoreInfoColumn,
         handleShowMoreInfo,
     } = props
@@ -19,10 +19,10 @@ const Table = (props) => {
         )
     }
 
-    if (isError) {
+    if (error) {
         return (
             <div>
-                <p className={styles.error}>Error...</p>
+                <p className={styles.error}>{error}</p>
             </div>
         )
     }

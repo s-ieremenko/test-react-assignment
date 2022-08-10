@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from 'react'
+
 import Table from '../Table/Table'
 import styles from './Task2.module.css'
+import { useFetching } from '../../hooks/useFetching'
+import UserService from '../../API/UserService'
+import { url } from '../../constants'
 
 const Task2 = () => {
     const [users, setUsers] = useState([])
-    const [isError, setIsError] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
     const [usersPerPage, setUsersPerPage] = useState(10)
 
-    const getUsers = async () => {
-        try {
-            const url = `https://hiring-api.simbuka.workers.dev/?page=${currentPage}&size=${usersPerPage}`
-            const response = await fetch(url)
-            const users = await response.json()
-            setUsers(users)
-            setIsLoading(false)
-        } catch (e) {
-            setIsLoading(false)
-            setIsError(true)
-        }
-    }
+    const urlWithPagination = `${url}?page=${currentPage}&size=${usersPerPage}`
+
+    const [fetchUsers, isLoading, error] = useFetching(async () => {
+        const users = await UserService.getAllUsers(urlWithPagination)
+        setUsers(users)
+    })
 
     useEffect(() => {
-        getUsers()
+        fetchUsers()
     }, [usersPerPage, currentPage])
 
     const handleChange = (e) => {
@@ -41,24 +37,26 @@ const Task2 = () => {
             <Table
                 users={users}
                 isLoading={isLoading}
-                isError={isError}
+                error={error}
             />
-            <div className={styles.pagination}>
-                <button onClick={handlePreviousButton}>
-                    Previous
-                </button>
-                <button onClick={handleNextButton}>Next</button>
-                <form>
-                    <select
-                        value={usersPerPage}
-                        onChange={handleChange}
-                    >
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="30">30</option>
-                    </select>
-                </form>
-            </div>
+            {!error && (
+                <div className={styles.pagination}>
+                    <button onClick={handlePreviousButton}>
+                        Previous
+                    </button>
+                    <button onClick={handleNextButton}>Next</button>
+                    <form>
+                        <select
+                            value={usersPerPage}
+                            onChange={handleChange}
+                        >
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                        </select>
+                    </form>
+                </div>
+            )}
         </div>
     )
 }

@@ -2,28 +2,19 @@ import React, { useEffect, useState } from 'react'
 
 import Table from '../Table/Table'
 import styles from '../Task2/Task2.module.css'
-
-const url = 'https://hiring-api.simbuka.workers.dev'
+import UserService from '../../API/UserService'
+import { useFetching } from '../../hooks/useFetching'
+import { url } from '../../constants'
 
 const Task1 = () => {
     const [users, setUsers] = useState([])
-    const [isError, setIsError] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
-
-    const getUsers = async () => {
-        try {
-            const response = await fetch(url)
-            const users = await response.json()
-            setUsers(users)
-            setIsLoading(false)
-        } catch (e) {
-            setIsLoading(false)
-            setIsError(true)
-        }
-    }
+    const [fetchUsers, isLoading, error] = useFetching(async () => {
+        const users = await UserService.getAllUsers(url)
+        setUsers(users)
+    })
 
     useEffect(() => {
-        getUsers()
+        fetchUsers()
     }, [])
 
     return (
@@ -31,7 +22,7 @@ const Task1 = () => {
             <Table
                 users={users}
                 isLoading={isLoading}
-                isError={isError}
+                error={error}
             />
         </div>
     )
