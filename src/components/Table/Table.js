@@ -1,29 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import styles from './Table.module.css'
 
-const url = 'https://hiring-api.simbuka.workers.dev'
-
-const Table = () => {
-    const [users, setUsers] = useState([])
-    const [isError, setIsError] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
-
-    const getUsers = async () => {
-        try {
-            const response = await fetch(url)
-            const users = await response.json()
-            setUsers(users)
-            setIsLoading(false)
-        } catch (e) {
-            setIsLoading(false)
-            setIsError(true)
-        }
-    }
-
-    useEffect(() => {
-        getUsers()
-    }, [])
+const Table = (props) => {
+    const { users, isLoading, isError } = props
 
     if (isLoading) {
         return (

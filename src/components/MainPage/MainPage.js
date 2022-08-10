@@ -1,10 +1,10 @@
 import React from 'react'
-import Table from '../Table/Table'
+import Task2 from '../Task2/Task2'
 
 const MainPage = () => {
     return (
         <main>
-            <Table />
+            <Task2 />
         </main>
     )
 }
