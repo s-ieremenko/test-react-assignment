@@ -22,7 +22,7 @@ const Table = (props) => {
     if (error) {
         return (
             <div>
-                <p className={styles.error}>{error}</p>
+                <p className={styles.error}>Error. {error}</p>
             </div>
         )
     }
@@ -46,6 +46,9 @@ const Table = (props) => {
                             {showMoreInfoColumn && (
                                 <td className={styles.moreInfo}>
                                     <button
+                                        className={
+                                            styles.moreInfoButton
+                                        }
                                         onClick={() =>
                                             handleShowMoreInfo(user)
                                         }

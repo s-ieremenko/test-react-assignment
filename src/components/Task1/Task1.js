@@ -19,6 +19,7 @@ const Task1 = () => {
 
     return (
         <div className={styles.container}>
+            <h2>TASK 1</h2>
             <Table
                 users={users}
                 isLoading={isLoading}

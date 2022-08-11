@@ -47,6 +47,7 @@ const Task3 = () => {
     }
     return (
         <div className={styles.container}>
+            <h2>TASK 3</h2>
             <Table
                 users={users}
                 isLoading={isLoading}
@@ -54,22 +55,24 @@ const Task3 = () => {
                 showMoreInfoColumn={true}
                 handleShowMoreInfo={handleShowMoreInfo}
             />
-            <div className={styles.pagination}>
-                <button onClick={handlePreviousButton}>
-                    Previous
-                </button>
-                <button onClick={handleNextButton}>Next</button>
-                <form>
-                    <select
-                        value={usersPerPage}
-                        onChange={handleChange}
-                    >
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="30">30</option>
-                    </select>
-                </form>
-            </div>
+            {!isLoading && !error && (
+                <div className={styles.pagination}>
+                    <button onClick={handlePreviousButton}>
+                        Previous
+                    </button>
+                    <button onClick={handleNextButton}>Next</button>
+                    <form>
+                        <select
+                            value={usersPerPage}
+                            onChange={handleChange}
+                        >
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                        </select>
+                    </form>
+                </div>
+            )}
             {openModal && (
                 <Modal
                     {...currentUser}

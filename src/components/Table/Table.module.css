@@ -1,5 +1,4 @@
 table {
-    border: 2px solid #000;
     width: 100%;
     margin-top: 20px;
 }
@@ -10,18 +9,26 @@ th {
 
 th,
 td {
-    border: 1px solid #000;
+    border: 1px solid #ccc;
     padding: 2px 6px;
     font-size: 15px;
+
 }
 
 .error, .loading {
     font-size: 50px;
     font-weight: 800;
     text-align: center;
-    margin-top: 115px;
+    margin-top: 75px;
 }
 
 .moreInfo {
     width: 19%
+}
+
+.moreInfoButton {
+    border: 1px solid grey;
+    border-radius: 3px;
+    background: #eff0fc;
+    margin: 2px 0;
 }

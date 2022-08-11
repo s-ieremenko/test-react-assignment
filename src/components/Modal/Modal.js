@@ -13,7 +13,7 @@ const Modal = (props) => {
     } = props
 
     return (
-        <div className={styles.modalBackground}>
+        <div className={styles.modalBackground} id="modalWindow">
             <div className={styles.modalContainer}>
                 <button onClick={handleCloseModal}>Close</button>
                 <ul>

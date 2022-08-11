@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
+
+body, button {
+    font-family: 'Crimson Text', serif;
+}
+
+h2 {
+    text-align: center;
+    font-weight: 800;
+    font-size: 22px;
+}

@@ -34,12 +34,13 @@ const Task2 = () => {
     }
     return (
         <div className={styles.container}>
+            <h2>TASK 2</h2>
             <Table
                 users={users}
                 isLoading={isLoading}
                 error={error}
             />
-            {!error && (
+            {!error && !isLoading && (
                 <div className={styles.pagination}>
                     <button onClick={handlePreviousButton}>
                         Previous
