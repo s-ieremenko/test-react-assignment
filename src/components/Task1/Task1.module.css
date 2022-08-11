@@ -1,0 +1,13 @@
+.container {
+    margin: 40px auto 0;
+    width: 700px;
+
+}
+
+.pagination {
+    display: flex;
+}
+
+.pagination select {
+    height: 22px;
+}
