@@ -7,6 +7,7 @@ import { url } from '../../constants'
 import { useFetching } from '../../hooks/useFetching'
 import UserService from '../../API/UserService'
 import Pagination from '../Pagination/Pagination'
+import BackHomeButton from '../BackHomeButton/BackHomeButton'
 
 const Task3 = () => {
     const [users, setUsers] = useState([])
@@ -68,6 +69,7 @@ const Task3 = () => {
                     disabled={disabled}
                 />
             )}
+            <BackHomeButton />
             {openModal && (
                 <Modal
                     {...currentUser}

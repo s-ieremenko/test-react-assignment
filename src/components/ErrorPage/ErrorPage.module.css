@@ -1,0 +1,10 @@
+.errorPage {
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto 0;
+}
+
+.errorPage h2 {
+    font-size: 30px;
+    font-weight: 800;
+}
