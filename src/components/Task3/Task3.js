@@ -6,6 +6,7 @@ import Modal from '../Modal/Modal'
 import { url } from '../../constants'
 import { useFetching } from '../../hooks/useFetching'
 import UserService from '../../API/UserService'
+import Pagination from '../Pagination/Pagination'
 
 const Task3 = () => {
     const [users, setUsers] = useState([])
@@ -31,10 +32,6 @@ const Task3 = () => {
         setCurrentUser(null)
     }
 
-    useEffect(() => {
-        fetchUsers()
-    }, [usersPerPage, currentPage])
-
     const handleChange = (e) => {
         setUsersPerPage(e.target.value)
     }
@@ -45,6 +42,12 @@ const Task3 = () => {
     const handleNextButton = () => {
         setCurrentPage(currentPage + 1)
     }
+    const disabled = users.length < usersPerPage
+
+    useEffect(() => {
+        fetchUsers()
+    }, [usersPerPage, currentPage])
+
     return (
         <div className={styles.container}>
             <h2>TASK 3</h2>
@@ -56,22 +59,14 @@ const Task3 = () => {
                 handleShowMoreInfo={handleShowMoreInfo}
             />
             {!isLoading && !error && (
-                <div className={styles.pagination}>
-                    <button onClick={handlePreviousButton}>
-                        Previous
-                    </button>
-                    <button onClick={handleNextButton}>Next</button>
-                    <form>
-                        <select
-                            value={usersPerPage}
-                            onChange={handleChange}
-                        >
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                        </select>
-                    </form>
-                </div>
+                <Pagination
+                    handleChange={handleChange}
+                    handlePreviousButton={handlePreviousButton}
+                    handleNextButton={handleNextButton}
+                    usersPerPage={usersPerPage}
+                    currentPage={currentPage}
+                    disabled={disabled}
+                />
             )}
             {openModal && (
                 <Modal
