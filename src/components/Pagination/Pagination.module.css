@@ -1,0 +1,17 @@
+
+.pagination {
+    display: flex;
+}
+
+.pagination select, .pagination button {
+    height: 22px;
+    border: 1px solid grey;
+    border-radius: 3px;
+    background: #eff0fc;
+    margin: 5px 4px;
+    padding: 2px 5px;
+}
+
+.pagination button {
+    min-width: 50px;
+}
