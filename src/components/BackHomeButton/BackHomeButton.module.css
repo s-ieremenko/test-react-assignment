@@ -1,0 +1,13 @@
+.backHomeButton {
+    display: inline-block;
+    background: #b7e8e3;
+    border: 1px solid #6b2677;
+    border-radius: 3px;
+    padding: 4px 8px;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+.backHomeButton a {
+    color: blue;
+}
