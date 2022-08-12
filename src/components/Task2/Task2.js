@@ -6,6 +6,7 @@ import { useFetching } from '../../hooks/useFetching'
 import UserService from '../../API/UserService'
 import { url } from '../../constants'
 import Pagination from '../Pagination/Pagination'
+import BackHomeButton from '../BackHomeButton/BackHomeButton'
 
 const Task2 = () => {
     const [users, setUsers] = useState([])
@@ -53,6 +54,7 @@ const Task2 = () => {
                     disabled={disabled}
                 />
             )}
+            <BackHomeButton />
         </div>
     )
 }

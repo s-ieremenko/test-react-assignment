@@ -3,3 +3,29 @@ main {
     background: #ffffff;
     width: 1200px;
 }
+
+.navList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+nav {
+    text-align: center;
+}
+
+.navList li {
+    margin-right: 30px;
+    border: 2px solid #3a7a82;
+}
+
+.navList li a {
+    display: block;
+    padding: 15px;
+    text-transform: uppercase;
+}
+
+a:active {
+    color: blueviolet;
+}

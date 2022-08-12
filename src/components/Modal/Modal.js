@@ -16,7 +16,7 @@ const Modal = (props) => {
         <div className={styles.modalBackground} id="modalWindow">
             <div className={styles.modalContainer}>
                 <button onClick={handleCloseModal}>Close</button>
-                <ul>
+                <ul className={styles.modalList}>
                     <li>
                         Identification number:{' '}
                         {customerIdentificationCode}
