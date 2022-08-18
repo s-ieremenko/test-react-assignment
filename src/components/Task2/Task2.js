@@ -2,23 +2,19 @@ import React, { useEffect, useState } from 'react'
 
 import Table from '../Table/Table'
 import styles from './Task2.module.css'
-import { useFetching } from '../../hooks/useFetching'
-import UserService from '../../API/UserService'
+import { useFetch } from '../../hooks/useFetching'
 import { url } from '../../constants'
 import Pagination from '../Pagination/Pagination'
 import BackHomeButton from '../BackHomeButton/BackHomeButton'
 
 const Task2 = () => {
-    const [users, setUsers] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [usersPerPage, setUsersPerPage] = useState(10)
 
     const urlWithPagination = `${url}?page=${currentPage}&size=${usersPerPage}`
 
-    const [fetchUsers, isLoading, error] = useFetching(async () => {
-        const users = await UserService.getAllUsers(urlWithPagination)
-        setUsers(users)
-    })
+    const [fetchUsers, isLoading, error, users] =
+        useFetch(urlWithPagination)
 
     const handleChange = (e) => {
         setUsersPerPage(e.target.value)
@@ -34,7 +30,7 @@ const Task2 = () => {
 
     useEffect(() => {
         fetchUsers()
-    }, [usersPerPage, currentPage])
+    }, [usersPerPage, currentPage, fetchUsers])
 
     return (
         <div className={styles.container}>

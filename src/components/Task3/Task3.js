@@ -4,24 +4,20 @@ import Table from '../Table/Table'
 import styles from './Task3.module.css'
 import Modal from '../Modal/Modal'
 import { url } from '../../constants'
-import { useFetching } from '../../hooks/useFetching'
-import UserService from '../../API/UserService'
+import { useFetch } from '../../hooks/useFetching'
 import Pagination from '../Pagination/Pagination'
 import BackHomeButton from '../BackHomeButton/BackHomeButton'
 
 const Task3 = () => {
-    const [users, setUsers] = useState([])
     const [currentUser, setCurrentUser] = useState({})
+    const [openModal, setOpenModal] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [usersPerPage, setUsersPerPage] = useState(10)
-    const [openModal, setOpenModal] = useState(false)
 
     const urlWithPagination = `${url}?page=${currentPage}&size=${usersPerPage}`
 
-    const [fetchUsers, isLoading, error] = useFetching(async () => {
-        const users = await UserService.getAllUsers(urlWithPagination)
-        setUsers(users)
-    })
+    const [fetchUsers, isLoading, error, users] =
+        useFetch(urlWithPagination)
 
     const handleShowMoreInfo = (currentUser) => {
         setOpenModal(true)
@@ -47,7 +43,7 @@ const Task3 = () => {
 
     useEffect(() => {
         fetchUsers()
-    }, [usersPerPage, currentPage])
+    }, [usersPerPage, currentPage, fetchUsers])
 
     return (
         <div className={styles.container}>
